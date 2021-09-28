@@ -5,7 +5,7 @@ node('master')
         {
    
         echo 'Checking out code...'
-        def scmVars = checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'dnagit', url: 'https://github.com/spring-projects/spring-petclinic.gitgiturl']]])
+        def scmVars = checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'githubcredential', url: 'https://github.com/juniebonifacio/spring-petclinic.git']]])
             echo "scmVars.GIT_COMMIT"
             echo "${scmVars.GIT_COMMIT}"
             env.GIT_COMMIT = scmVars.GIT_COMMIT
@@ -36,14 +36,14 @@ node('master')
         {
             echo 'Analysing code...'
             env.SONARURL = "${env.Sonar_Url}"
-            withCredentials([usernamePassword(credentialsId: 'devopscoeuser', passwordVariable: 'sonarpassword', usernameVariable: 'sonaruser')])
+            withCredentials([usernamePassword(credentialsId: 'sonarqubecredential', passwordVariable: 'sonarpassword', usernameVariable: 'sonaruser')])
             {
             sh '''
-             mvn sonar:sonar -Dsonar.login=${sonaruser} -Dsonar.password=${sonarpassword} -Dsonar.host.url=\'https://sonar_url/\'
+             mvn sonar:sonar -Dsonar.login=${sonaruser} -Dsonar.password=${sonarpassword} -Dsonar.host.url=${SONARURL}
              '''
              }
         }
-    stage('Build Docker Image') {
+    /*stage('Build Docker Image') {
                 echo 'Building ..'
  		        withCredentials([usernamePassword(credentialsId: 'devopscoeuser', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
  		        {
@@ -65,5 +65,5 @@ node('master')
                 docker rmi -f $IMAGENAME:latest
  		        '''
             }
-        }
+        }*/
 }
