@@ -45,10 +45,11 @@ node('master')
             env.SONARURL = "${env.Sonar_Url}"
             withCredentials([usernamePassword(credentialsId: 'sonarqubecredential', passwordVariable: 'sonarpassword', usernameVariable: 'sonaruser')])
             {
+            withMaven(maven: 'maven') {
             sh '''
              mvn sonar:sonar -Dsonar.login=${sonaruser} -Dsonar.password=${sonarpassword} -Dsonar.host.url=${SONARURL}
              '''
-             }
+             }}
         }
     /*stage('Build Docker Image') {
                 echo 'Building ..'
