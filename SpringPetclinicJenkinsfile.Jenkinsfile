@@ -51,7 +51,7 @@ node('master')
              '''
              }}
         }
-    /*stage('Build Docker Image') {
+    stage('Build Docker Image') {
                 echo 'Building ..'
  		        withCredentials([usernamePassword(credentialsId: 'devopscoeuser', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
  		        {
@@ -60,7 +60,7 @@ node('master')
  		        '''
             }
         }
-    stage('Push Docker Image to Docker Registry') {
+   /* stage('Push Docker Image to Docker Registry') {
                 echo "Pushing to Registry .. ${env.DOCKERREPO}"
  		        withCredentials([usernamePassword(credentialsId: 'devopscoeuser', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
  		        {
