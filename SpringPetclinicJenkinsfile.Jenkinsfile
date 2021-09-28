@@ -25,12 +25,19 @@ node('master')
 
     stage('Unit Testing') 
         {
-            echo 'Building ..'
+                withMaven(maven: 'maven') {
+                    sh returnStdout: true, script: '''
+                    echo $PATH
+                    echo ${WORKSPACE}
+                    mvn versions:set -DnewVersion=${BUILD_NUMBER}
+                    mvn clean install ''' 
+                }
+            /*echo 'Building ..'
  		     sh returnStdout: true, script: '''
             echo $PATH
             echo ${WORKSPACE}
             mvn versions:set -DnewVersion=${BUILD_NUMBER}
-            mvn clean install ''' 
+            mvn clean install ''' */
          }
     stage('Code Quality Analysis') 
         {
