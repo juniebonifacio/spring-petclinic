@@ -53,7 +53,8 @@ node('master')
         }
     stage('Build Docker Image') {
                 echo 'Building ..'
- 		        withCredentials([usernamePassword(credentialsId: 'devopscoeuser', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
+                withDockerRegistry(credentialsId: 'devopscoeuser', toolName: 'docker', url: 'https://cloud.ibm.com/registry') {
+ 		       // withCredentials([usernamePassword(credentialsId: 'devopscoeuser', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
  		        {
  		        sh '''
  		           docker build -t $IMAGENAME:$IMAGETAG --build-arg version=${IMAGETAG} .
