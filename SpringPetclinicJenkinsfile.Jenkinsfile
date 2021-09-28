@@ -1,6 +1,6 @@
 node('master') 
 {    
-	cleanWs()
+	//cleanWs()
      stage('Code Checkout')
         {
    
