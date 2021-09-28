@@ -53,7 +53,7 @@ node('master')
         }
     stage('Build Docker Image') {
                 echo 'Building ..'
-                withDockerRegistry(credentialsId: 'devopscoeuser', toolName: 'docker', url: 'https://cloud.ibm.com/registry') {
+                withDockerRegistry(credentialsId: 'devopscoeuser', toolName: 'docker', url: 'image-registry.openshift-image-registry.svc:5000') {
  		       // withCredentials([usernamePassword(credentialsId: 'devopscoeuser', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
  		       // {
  		        sh '''
