@@ -51,15 +51,16 @@ node('master')
              '''
              }}
         }
-    tools {dockerTool  "docker" } 
     stage('Build Docker Image') {
                 echo 'Building ..'
                 withDockerRegistry(credentialsId: 'devopscoeuser', toolName: 'docker', url: 'http://image-registry.openshift-image-registry.svc:5000/openshift/spring-petclinic') {
  		       // withCredentials([usernamePassword(credentialsId: 'devopscoeuser', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
  		       // {
+                    docker.withTool('') { 
  		        sh '''
  		           docker build -t $IMAGENAME:$IMAGETAG --build-arg version=${IMAGETAG} .
  		        '''
+                    }
             }
         }
    /* stage('Push Docker Image to Docker Registry') {
