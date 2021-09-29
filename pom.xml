@@ -339,6 +339,9 @@
                       <pluginExecutionFilter>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-checkstyle-plugin</artifactId>
+                          <configuration>
+                              <skip>true</skip>
+                          </configuration>
                         <versionRange>[1,)</versionRange>
                         <goals>
                           <goal>check</goal>
