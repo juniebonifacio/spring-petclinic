@@ -139,12 +139,9 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-            <executions>
-                <execution>
-                    <id>checkstyle-validation</id>
-                    <phase>none</phase>
-                </execution>
-            </executions>
+        <configuration>
+            <skip>true</skip>
+        </configuration>
         <version>3.1.1</version>
         <dependencies>
           <dependency>
@@ -345,9 +342,6 @@
                       <pluginExecutionFilter>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-checkstyle-plugin</artifactId>
-                          <configuration>
-                              <skip>true</skip>
-                          </configuration>
                         <versionRange>[1,)</versionRange>
                         <goals>
                           <goal>check</goal>
