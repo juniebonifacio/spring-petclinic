@@ -51,6 +51,7 @@ node('master')
              '''
              }}
         }
+    tools {dockerTool  "docker" } 
     stage('Build Docker Image') {
                 echo 'Building ..'
                 withDockerRegistry(credentialsId: 'devopscoeuser', toolName: 'docker', url: 'http://image-registry.openshift-image-registry.svc:5000/openshift/spring-petclinic') {
