@@ -53,7 +53,7 @@ node('master')
         }
     stage('Build Docker Image') {
                 echo 'Building ..'
-                withDockerRegistry(credentialsId: 'devopscoeuser', toolName: 'docker', url: 'image-registry.openshift-image-registry.svc:5000/openshift/spring-petclinic') {
+                withDockerRegistry(credentialsId: 'devopscoeuser', toolName: 'docker', url: 'https://image-registry.openshift-image-registry.svc:5000/openshift/spring-petclinic') {
  		       // withCredentials([usernamePassword(credentialsId: 'devopscoeuser', passwordVariable: 'registrypassword', usernameVariable: 'registryuser')])
  		       // {
  		        sh '''
